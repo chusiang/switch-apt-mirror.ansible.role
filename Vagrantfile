@@ -24,8 +24,15 @@ Vagrant.configure(2) do |config|
   end
 
   # Ubuntu 16.04
+  #
+  # - need manual install python2.
+  #
   config.vm.define "ubuntu1604" do |node|
     node.vm.box = "ubuntu/xenial64"
+
+    node.vm.provision "shell", inline: <<-SHELL
+      sudo apt-get install -y python
+    SHELL
     
     node.vm.provision "ansible" do |ansible|
       ansible.playbook = "setup.yml"
