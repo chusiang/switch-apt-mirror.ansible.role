@@ -1,3 +1,4 @@
 .vagrant/
 roles/
 build_result*
+ansible-retry/*
