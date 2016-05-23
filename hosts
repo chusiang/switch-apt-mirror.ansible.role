@@ -14,5 +14,7 @@
 # 針對不同的平台可能 key 以及使用者不一樣可以額外指定
 # 也可以用群組的方式
 
-ansible-demo.local  ansible_ssh_host=127.0.0.1  ansible_ssh_port=2200 ansible_ssh_user=vagrant ansible_ssh_private_key_file=.vagrant/machines/default/virtualbox/private_key
+ubuntu1604.local  ansible_ssh_host=127.0.0.1  ansible_ssh_port=2200 ansible_ssh_user=ubuntu ansible_ssh_private_key_file=.vagrant/machines/ubuntu1604/virtualbox/private_key
+
+#test.local  ansible_ssh_host=127.0.0.1  ansible_ssh_port=2200 ansible_ssh_user=vagrant ansible_ssh_private_key_file=.vagrant/machines/default/virtualbox/private_key
 

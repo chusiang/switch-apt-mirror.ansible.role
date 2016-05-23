@@ -1,0 +1,33 @@
+language: bash
+sudo: true
+services:
+  - docker
+
+before_install:
+  - docker info
+  - docker version
+  
+  - echo "==> Build with Docker ..."
+  
+  # Ubuntu
+  - docker build -f tests/Dockerfile.ubuntu1204  -t switch-apt-mirror:ubuntu1204 . | tee build_result.ubuntu1204
+  - docker build -f tests/Dockerfile.ubuntu1404  -t switch-apt-mirror:ubuntu1404 . | tee build_result.ubuntu1404
+  #- docker build -f tests/Dockerfile.ubuntu1604  -t switch-apt-mirror:ubuntu1604 . | tee build_result.ubuntu1604
+  
+  # Debian
+  - docker build -f tests/Dockerfile.debian7 -t switch-apt-mirror:debian7 .    | tee build_result.debian7
+  - docker build -f tests/Dockerfile.debian8 -t switch-apt-mirror:debian8 .    | tee build_result.debian8
+  
+script:
+  - echo "==> Run Test case ..."
+  
+  - grep 'deb http://free.nchc.org.tw/ubuntu' build_result.ubuntu1204
+  - grep 'deb http://free.nchc.org.tw/ubuntu' build_result.ubuntu1404
+  #- grep 'deb http://free.nchc.org.tw/ubuntu' build_result.ubuntu1604
+
+  - grep 'deb http://opensource.nchc.org.tw/debian' build_result.debian7
+  - grep 'deb http://opensource.nchc.org.tw/debian' build_result.debian8
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+
