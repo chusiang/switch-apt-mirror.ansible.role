@@ -1,0 +1,30 @@
+#!/usr/bin/env ansible-playbook
+
+---
+- name: play 'switch-apt-mirror.ansible.role/setup.yml'
+  hosts: all
+
+  roles:
+    - chusiang.vim-and-vi-mode
+
+  vars_files:
+    - defaults/main.yml
+
+  tasks:
+    - name: include main task
+      include: tasks/main.yml
+
+    - name: review result
+      shell: cat /etc/apt/sources.list
+      register: apt_sources_list
+
+    - name: print process
+      debug:
+        msg: "{{ apt_sources_list.stdout_lines }}"
+
+  handlers:
+    - name: update apt cache
+      become: yes
+      apt: update_cache=yes
+
+# vim: ft=ansible :

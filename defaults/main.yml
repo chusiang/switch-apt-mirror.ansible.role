@@ -1,0 +1,13 @@
+---
+# defaults file for switch-apt-mirror-to-taiwan.ansible.role
+
+# Ubuntu
+#ubuntu_apt_mirror: 'archive.ubuntu.com'
+ubuntu_apt_mirror: 'free.nchc.org.tw'
+
+# Debian
+#debian_apt_mirror: 'httpredir.debian.org'
+debian_apt_mirror: 'opensource.nchc.org.tw'
+
+
+# vim: ft=ansible :

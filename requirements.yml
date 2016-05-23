@@ -1,0 +1,4 @@
+- # @see https://galaxy.ansible.com/chusiang/vim-and-vi-mode
+  src: chusiang.vim-and-vi-mode
+  path: roles/
+
