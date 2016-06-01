@@ -1,6 +1,0 @@
----
-# handlers file for switch-apt-mirror-to-taiwan.ansible.role
-
-- name: update apt cache
-  become: yes
-  apt: update_cache=yes
