@@ -22,9 +22,4 @@
       debug:
         msg: "{{ apt_sources_list.stdout_lines }}"
 
-  handlers:
-    - name: update apt cache
-      become: yes
-      apt: update_cache=yes
-
 # vim: ft=ansible :
