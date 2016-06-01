@@ -1,5 +1,5 @@
 ---
-# tasks file for switch-apt-mirror-to-taiwan.ansible.role
+# tasks file for switch-apt-mirror.ansible.role
 
 - name: replace apt mirror on ubuntu
   become: yes
@@ -18,5 +18,9 @@
     backup=yes
   when: ansible_distribution|lower == "debian"
   notify: update apt cache
+
+- name: update apt cache
+  become: yes
+  apt: update_cache=yes
 
 # vim: ft=ansible :
