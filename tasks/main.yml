@@ -8,7 +8,6 @@
     dest=/etc/apt/sources.list
     backup=yes
   when: ansible_distribution|lower == "ubuntu"
-  notify: update apt cache
 
 - name: replace apt mirror on debian
   become: yes
@@ -17,7 +16,6 @@
     dest=/etc/apt/sources.list
     backup=yes
   when: ansible_distribution|lower == "debian"
-  notify: update apt cache
 
 - name: update apt cache
   become: yes
