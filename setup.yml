@@ -15,7 +15,7 @@
       include: tasks/main.yml
 
     - name: review result
-      shell: cat /etc/apt/sources.list
+      command: cat /etc/apt/sources.list
       register: apt_sources_list
 
     - name: print process
