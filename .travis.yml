@@ -6,30 +6,29 @@ services:
 before_install:
   - docker info
   - docker version
-  
-  - echo "==> Build with Docker ..."
-  
-  # Ubuntu
-  - docker build -f tests/Dockerfile.ubuntu1204  -t switch-apt-mirror:ubuntu1204 . | tee build_result.ubuntu1204
-  - docker build -f tests/Dockerfile.ubuntu1404  -t switch-apt-mirror:ubuntu1404 . | tee build_result.ubuntu1404
-  - docker build -f tests/Dockerfile.ubuntu1604  -t switch-apt-mirror:ubuntu1604 . | tee build_result.ubuntu1604
-  
-  # Debian
-  - docker build -f tests/Dockerfile.debian7 -t switch-apt-mirror:debian7 .    | tee build_result.debian7
-  - docker build -f tests/Dockerfile.debian8 -t switch-apt-mirror:debian8 .    | tee build_result.debian8
-  
-script:
-  - echo "==> Run Test case ..."
-  
-  - grep 'deb http://free.nchc.org.tw/ubuntu' build_result.ubuntu1204
-  - grep 'deb http://free.nchc.org.tw/ubuntu' build_result.ubuntu1404
-  - grep 'deb http://free.nchc.org.tw/ubuntu' build_result.ubuntu1604
 
-  - grep 'deb http://opensource.nchc.org.tw/debian' build_result.debian7
-  - grep 'deb http://opensource.nchc.org.tw/debian' build_result.debian8
+  - echo "==> Build with Docker ..."
+  - docker build -f tests/Dockerfile.ubuntu1204  -t switch-apt-mirror:ubuntu1204 . |
+    tee build_result.ubuntu1204
+  - docker build -f tests/Dockerfile.ubuntu1404  -t switch-apt-mirror:ubuntu1404 . |
+    tee build_result.ubuntu1404
+  - docker build -f tests/Dockerfile.ubuntu1604  -t switch-apt-mirror:ubuntu1604 . |
+    tee build_result.ubuntu1604
+  - docker build -f tests/Dockerfile.debian7 -t switch-apt-mirror:debian7 . | tee
+    build_result.debian7
+  - docker build -f tests/Dockerfile.debian8 -t switch-apt-mirror:debian8 . | tee
+    build_result.debian8
+
+script:
+- echo "==> Run Test case ..."
+- grep 'deb http://free.nchc.org.tw/ubuntu' build_result.ubuntu1204
+- grep 'deb http://free.nchc.org.tw/ubuntu' build_result.ubuntu1404
+- grep 'deb http://free.nchc.org.tw/ubuntu' build_result.ubuntu1604
+- grep 'deb http://opensource.nchc.org.tw/debian' build_result.debian7
+- grep 'deb http://opensource.nchc.org.tw/debian' build_result.debian8
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
-  hipchat:
-    secure: "DTnXg490xbC3HB3Qs/8aSDSRlrVUBWrDzywuo6+PJrTrQFZbAbn1Xeey9wmibkIB6AigZew+EeBTcmIkactb6zH8cTwOBAaZIAiU2SgMjCBkMXOPblvCd9DToL8ul5/jkwu8ZfV91ncrujczajZDPA1qaKhU3LKqpCVCHIxptRyX2FRsiGS1/2IJSWM/GdVWHzRr4OdYcLixqPlC40iQf6sDlCJAlGmkNSGyMDJ9nOlPKH0fRXW+DBSUMcbYFYO7v3AfDlBibWcaCohhVfaMeYt0BGuQ0cDaxMPPqJbvBySHB04OGFbjFCnQgQe9Q/e7SlUctoKumzloIwcoJOnKtZpHuayXYegRSbUuvVhm0E2a3OHjeuenKdjddF1lOAuUyBal3Jlqy1yIwLafW6lCNaR2+xyJ/tcL2Ds/SSTFnvzxZH1j43acJ59mkFjrA6TQUt81sOG4nlFjHOoD+DriCY1tc6WVP3IltjZUyQBvOrg08DtnTHCJYMG6Yep9hg9y4WO7Hi/3eWiA4z8vYNzOBOz2xVKlqyWTTELwSp04PsnZHxmRInoXdPYK0Jmyh3qNtslcw4l5oHb0htFwyqCPBWbjb0wm/5OrIVcnFXYt9k3/uDOCzz9QsPhulg5Ei+159gNMn4w9djzLVK4IUkzBf/X4PwwH7h56WccHsCGchsc="
+  slack:
+    secure: bqAhjYiUSuCtkByzJnX1DOXqFj/wOGauPAR3Doqdmocu1AL2iAnhWrPy67BrVd2fnq1w/cO9QEEYPpbB1204tnyP6ehrqoncXcL6c0OQcswTpqLF/QxK7j6VhDxgz3uHmZ9w3fYxr6/Ptzd+SOQmK+urEmLwfzu0QvPeMTQ+tyEosqKzX+qgm/9uIxuTFzvNMJh0a/ZolAJBi34DZ+FCzIwi5cGK21UaYQUfAzuQ7L8n+PQB5SyIMhgFUkshCY4/iYq7HUHTY6ctDzwBB8sK0xeOK4mdMLdVqvFkPMo6mhoEYLwic18wUvo2PCS9oHROqirQt7+h1yIzv9OspCsMbIfiNPz6JyWgOOTnejU6Uzvii3Abg6n+BObyFG4ltIM4lVlc9qa/uYjeKo9SfK+arZLgGtlZhQLP0pCSwlmqkRiOZQ9YGDjMmcyQVhnFrpYGB9O9EPh1JF9H5LiVC8wnhP9O1CaguImdUF9yiWHdZDwuTg05dyyV0oHOc2VlGdcM6vzlOTZ1IzJdX5Qj0B2xEeIsNLja2aW99dwRXTgYDQhal5y5NJi+wEz3UmDOoH6bpYgpkxAH0/zx5jANXxVy+5NnWY8M+gqX4VC23tYvgm0ugYJq1UvcBnITZ7gJT9zf2gF11JpP3uUW87Syfs6FkyJGS0R99aii87NlIg7vMgc=
 
