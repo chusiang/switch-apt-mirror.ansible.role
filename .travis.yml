@@ -18,6 +18,8 @@ before_install:
     build_result.debian7
   - docker build -f tests/Dockerfile.debian8 -t switch-apt-mirror:debian8 . | tee
     build_result.debian8
+  - docker build -f tests/Dockerfile.debian9 -t switch-apt-mirror:debian9 . | tee
+    build_result.debian9
 
 script:
 - echo "==> Run Test case ..."
@@ -26,6 +28,7 @@ script:
 - grep 'deb http://free.nchc.org.tw/ubuntu' build_result.ubuntu1604
 - grep 'deb http://opensource.nchc.org.tw/debian' build_result.debian7
 - grep 'deb http://opensource.nchc.org.tw/debian' build_result.debian8
+- grep 'deb http://opensource.nchc.org.tw/debian' build_result.debian9
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
