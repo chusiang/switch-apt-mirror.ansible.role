@@ -4,9 +4,6 @@
 - name: play 'switch-apt-mirror.ansible.role/provision.yml'
   hosts: all
 
-  roles:
-    - chusiang.vim-and-vi-mode
-
   vars_files:
     - defaults/main.yml
 
