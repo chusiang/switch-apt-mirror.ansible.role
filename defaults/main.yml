@@ -10,4 +10,4 @@ ubuntu_apt_mirror: 'free.nchc.org.tw'
 debian_apt_mirror: 'opensource.nchc.org.tw'
 
 
-# vim: ft=ansible :
+# vim: ft=yaml.ansible :

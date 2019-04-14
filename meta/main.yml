@@ -1,11 +1,11 @@
 galaxy_info:
   author: chusiang
   description: Switch APT Mirror for Debian & Ubuntu.
-  
+
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
   # issue_tracker_url: http://example.com/issue/tracker
-  
+
   # Some suggested licenses:
   # - BSD (default)
   # - MIT
@@ -14,7 +14,7 @@ galaxy_info:
   # - Apache
   # - CC-BY
   license: MIT
-  
+
   min_ansible_version: 2.0
 
   # Below are all platforms currently available. Just uncomment
@@ -31,9 +31,8 @@ galaxy_info:
     versions:
       - wheezy
       - jessie
-  
+
   galaxy_tags:
     - apt
 
 dependencies: []
-

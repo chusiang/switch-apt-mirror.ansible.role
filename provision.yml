@@ -1,6 +1,6 @@
 #!/usr/bin/env ansible-playbook
-
 ---
+
 - name: play 'switch-apt-mirror.ansible.role/provision.yml'
   hosts: all
 
@@ -20,4 +20,4 @@
       debug:
         msg: '{{ apt_sources_list.stdout_lines }}'
 
-# vim: ft=ansible :
+# vim: ft=yaml.ansible :

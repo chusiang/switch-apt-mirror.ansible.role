@@ -25,9 +25,9 @@ deb-src http://{{ ubuntu_apt_mirror }}/ubuntu {{ ansible_distribution_release }}
 deb http://{{ ubuntu_apt_mirror }}/ubuntu {{ ansible_distribution_release }}-updates universe
 deb-src http://{{ ubuntu_apt_mirror }}/ubuntu {{ ansible_distribution_release }}-updates universe
 
-## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu 
+## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
 ## team, and may not be under a free licence. Please satisfy yourself as to
-## your rights to use the software. Also, please note that software in 
+## your rights to use the software. Also, please note that software in
 ## multiverse WILL NOT receive any review or updates from the Ubuntu
 ## security team.
 deb http://{{ ubuntu_apt_mirror }}/ubuntu {{ ansible_distribution_release }} multiverse
@@ -58,4 +58,3 @@ deb http://security.ubuntu.com/ubuntu {{ ansible_distribution_release }}-securit
 deb-src http://security.ubuntu.com/ubuntu {{ ansible_distribution_release }}-security universe
 # deb http://security.ubuntu.com/ubuntu {{ ansible_distribution_release }}-security multiverse
 # deb-src http://security.ubuntu.com/ubuntu {{ ansible_distribution_release }}-security multiverse
-
