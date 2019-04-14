@@ -16,7 +16,7 @@
       become: true
       apt:
         update_cache: yes
-      when: 'replace_ubuntu_apt_config.changed == true'
+      when: replace_ubuntu_apt_config.changed
 
   when: ansible_distribution|lower == 'ubuntu'
 
@@ -35,8 +35,8 @@
       become: true
       apt:
         update_cache: yes
-      when: 'replace_debian_apt_config.changed == true'
+      when: replace_debian_apt_config.changed
 
   when: ansible_distribution|lower == 'debian'
 
-# vim: ft=ansible :
+# vim: ft=yaml.ansible :
