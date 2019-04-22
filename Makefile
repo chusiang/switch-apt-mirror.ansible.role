@@ -12,6 +12,9 @@ syntax_check:
 lint_check:
 	ansible-lint provision.yml
 
+travis_check:
+	travis lint .travis.yml
+
 up:
 	vagrant up
 
