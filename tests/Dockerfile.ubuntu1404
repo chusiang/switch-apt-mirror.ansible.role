@@ -12,4 +12,4 @@ RUN sed -i -e 's/exit\s\s*101/exit 0/' /usr/sbin/policy-rc.d
 
 # run.
 ENV PLAYBOOK provision.yml
-RUN ansible-playbook-wrapper -vvv
+RUN ansible-playbook-wrapper -v
