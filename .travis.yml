@@ -3,9 +3,9 @@ sudo: true
 services:
   - docker
 
-#before_install:
-#  - docker info
-#  - docker version
+before_install:
+  - docker info
+  - docker version
 
 jobs:
   include:
@@ -45,16 +45,16 @@ jobs:
         - echo "==> Run Test case ..."
         - grep "deb $APT_MIRROR" build_result.$DISTRO
 
-    - stage: build
-      env:
-        - DISTRO="debian8"
-        - APT_MIRROR="http://opensource.nchc.org.tw/debian"
-      script:
-        - echo "==> Build with Docker ..."
-        - docker build -f tests/Dockerfile.$DISTRO -t switch-apt-mirror:$DISTRO
-           . | tee build_result.$DISTRO
-        - echo "==> Run Test case ..."
-        - grep "deb $APT_MIRROR" build_result.$DISTRO
+    #- stage: build
+    #  env:
+    #    - DISTRO="debian8"
+    #    - APT_MIRROR="http://opensource.nchc.org.tw/debian"
+    #  script:
+    #    - echo "==> Build with Docker ..."
+    #    - docker build -f tests/Dockerfile.$DISTRO -t switch-apt-mirror:$DISTRO
+    #       . | tee build_result.$DISTRO
+    #    - echo "==> Run Test case ..."
+    #    - grep "deb $APT_MIRROR" build_result.$DISTRO
 
     - stage: build
       env:
