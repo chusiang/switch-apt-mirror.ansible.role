@@ -1,10 +1,12 @@
-.PHONY: main init syntax_check lint_check up run clean_roles clean
+.PHONY: main init check syntax_check lint_check up run clean_roles clean
 
-main: syntax_check lint_check
+main: check
 
 init:
 	ansible-galaxy install -f -p roles -r requirements.yml
 	if [ ! -d "/tmp/ansible-retry" ]; then mkdir "/tmp/ansible-retry"; fi
+
+check: syntax_check lint_check
 
 syntax_check:
 	ansible-playbook --syntax-check provision.yml
