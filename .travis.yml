@@ -3,29 +3,69 @@ sudo: true
 services:
   - docker
 
-before_install:
-  - docker info
-  - docker version
+#before_install:
+#  - docker info
+#  - docker version
 
-  - echo "==> Build with Docker ..."
-  - docker build -f tests/Dockerfile.ubuntu1204 -t switch-apt-mirror:ubuntu1204
-     . | tee build_result.ubuntu1204
-  - docker build -f tests/Dockerfile.ubuntu1404 -t switch-apt-mirror:ubuntu1404
-     . | tee build_result.ubuntu1404
-  - docker build -f tests/Dockerfile.ubuntu1604 -t switch-apt-mirror:ubuntu1604
-     . | tee build_result.ubuntu1604
-  - docker build -f tests/Dockerfile.debian8    -t switch-apt-mirror:debian8
-     . | tee build_result.debian8
-  - docker build -f tests/Dockerfile.debian9    -t switch-apt-mirror:debian9
-     . | tee build_result.debian9
+jobs:
+  include:
 
-script:
-- echo "==> Run Test case ..."
-- grep 'deb http://free.nchc.org.tw/ubuntu'       build_result.ubuntu1204
-- grep 'deb http://free.nchc.org.tw/ubuntu'       build_result.ubuntu1404
-- grep 'deb http://free.nchc.org.tw/ubuntu'       build_result.ubuntu1604
-- grep 'deb http://opensource.nchc.org.tw/debian' build_result.debian8
-- grep 'deb http://opensource.nchc.org.tw/debian' build_result.debian9
+    # ---- Build --------------------------------------------------------------
+
+    - stage: build
+      env:
+        - DISTRO="ubuntu1204"
+        - APT_MIRROR="http://free.nchc.org.tw/ubuntu"
+      script:
+        - echo "==> Build with Docker ..."
+        - docker build -f tests/Dockerfile.$DISTRO -t switch-apt-mirror:$DISTRO
+           . | tee build_result.$DISTRO
+        - echo "==> Run Test case ..."
+        - grep "deb $APT_MIRROR" build_result.$DISTRO
+
+    - stage: build
+      env:
+        - DISTRO="ubuntu1404"
+        - APT_MIRROR="http://free.nchc.org.tw/ubuntu"
+      script:
+        - echo "==> Build with Docker ..."
+        - docker build -f tests/Dockerfile.$DISTRO -t switch-apt-mirror:$DISTRO
+           . | tee build_result.$DISTRO
+        - echo "==> Run Test case ..."
+        - grep "deb $APT_MIRROR" build_result.$DISTRO
+
+    - stage: build
+      env:
+        - DISTRO="ubuntu1604"
+        - APT_MIRROR="http://free.nchc.org.tw/ubuntu"
+      script:
+        - echo "==> Build with Docker ..."
+        - docker build -f tests/Dockerfile.$DISTRO -t switch-apt-mirror:$DISTRO
+           . | tee build_result.$DISTRO
+        - echo "==> Run Test case ..."
+        - grep "deb $APT_MIRROR" build_result.$DISTRO
+
+    - stage: build
+      env:
+        - DISTRO="debian8"
+        - APT_MIRROR="http://opensource.nchc.org.tw/debian"
+      script:
+        - echo "==> Build with Docker ..."
+        - docker build -f tests/Dockerfile.$DISTRO -t switch-apt-mirror:$DISTRO
+           . | tee build_result.$DISTRO
+        - echo "==> Run Test case ..."
+        - grep "deb $APT_MIRROR" build_result.$DISTRO
+
+    - stage: build
+      env:
+        - DISTRO="debian9"
+        - APT_MIRROR="http://opensource.nchc.org.tw/debian"
+      script:
+        - echo "==> Build with Docker ..."
+        - docker build -f tests/Dockerfile.$DISTRO -t switch-apt-mirror:$DISTRO
+           . | tee build_result.$DISTRO
+        - echo "==> Run Test case ..."
+        - grep "deb $APT_MIRROR" build_result.$DISTRO
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
