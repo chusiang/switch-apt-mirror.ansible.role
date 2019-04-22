@@ -11,5 +11,5 @@ MAINTAINER Chu-Siang Lai <chusiang.lai@gmail.com>
 RUN sed -i -e 's/exit\s\s*101/exit 0/' /usr/sbin/policy-rc.d
 
 # run.
-ENV PLAYBOOK provision.yml
+ENV PLAYBOOK provision.yml -e "debian_apt_mirror=archive.debian.org"
 RUN ansible-playbook-wrapper -vvv
