@@ -25,5 +25,5 @@ clean_roles:
 	-rm -rf roles/
 
 clean: clean_roles
-	-rm -f *.retry *.log
+	-rm -f *.retry *.log build_result.*
 	vagrant destroy -f
