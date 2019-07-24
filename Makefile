@@ -1,4 +1,5 @@
-.PHONY: main init check syntax_check lint_check up run clean_roles clean
+.PHONY: main init check syntax_check lint_check yaml_check travis_check \
+	up run clean_roles clean
 
 main: check
 
@@ -14,6 +15,10 @@ syntax_check:
 lint_check:
 	ansible-lint provision.yml
 
+yaml_check:
+	find -name "*.yml" -type f -not -path "./roles/*"		\
+		-exec yamllint -c .yamllint.yaml {} \;
+
 travis_check:
 	travis lint .travis.yml
 
@@ -21,7 +26,8 @@ up:
 	vagrant up
 
 run:
-	ansible-playbook provision.yml -i .vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory
+	ansible-playbook provision.yml -i				\
+		.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory
 
 clean_roles:
 	-rm -rf roles/
