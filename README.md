@@ -40,7 +40,7 @@ Including an example of how to use your role (for instance, with variables passe
 History
 -------
 
-* 2019/04/23 Stop support the [Debain 7](https://www.debian.org/releases/wheezy/), the wheezy was EOL at May 2018.
+* 2019/04/23 Stop support the [Debian 7](https://www.debian.org/releases/wheezy/), the wheezy was EOL at May 2018.
 
 License
 -------
